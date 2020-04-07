@@ -1,0 +1,17 @@
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\appsettings.json
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\SalesTaxCalculator.exe
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\SalesTaxCalculator.deps.json
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\SalesTaxCalculator.runtimeconfig.json
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\SalesTaxCalculator.runtimeconfig.dev.json
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\SalesTaxCalculator.dll
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\bin\Debug\netcoreapp3.1\SalesTaxCalculator.pdb
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.csprojAssemblyReference.cache
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\staticwebassets\SalesTaxCalculator.StaticWebAssets.Manifest.cache
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\staticwebassets\SalesTaxCalculator.StaticWebAssets.xml
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.MvcApplicationPartsAssemblyInfo.cache
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.AssemblyInfoInputs.cache
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.AssemblyInfo.cs
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.RazorTargetAssemblyInfo.cache
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.dll
+D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.pdb
