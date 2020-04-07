@@ -26,7 +26,7 @@ namespace SalesTaxCalculator.Services
                 return BadRequestError($"{request.State} is not supported.");
             }
 
-            var matchedCounty = matchedState.countyTaxes?.FirstOrDefault(county => county.Name == request.County);
+            var matchedCounty = matchedState.CountyTaxes?.FirstOrDefault(county => county.Name == request.County);
             if (matchedCounty == null)
             {
                 // Didn't find County

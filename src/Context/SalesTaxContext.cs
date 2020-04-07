@@ -23,7 +23,7 @@ namespace SalesTaxCalculator.Context
 
 
 		public async Task<StateSalesTax> RetrieveState(string name) {
-			return await stateSalesTaxes.Include(state => state.countyTaxes).FirstOrDefaultAsync(state => state.Name == name);
+			return await stateSalesTaxes.Include(state => state.CountyTaxes).FirstOrDefaultAsync(state => state.Name == name);
 		}
 
 	}

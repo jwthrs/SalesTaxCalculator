@@ -10,7 +10,7 @@ namespace SalesTaxCalculator.Models
         public int Id {get; set;}
         public string Name {get; set;}
         public string TaxRate {get; set;}
-        public List<CountyTax> countyTaxes { get; set; }
+        public List<CountyTax> CountyTaxes { get; set; }
     }
 
     public class CountyTax
