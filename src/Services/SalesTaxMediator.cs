@@ -9,10 +9,11 @@ namespace SalesTaxCalculator.Services
 {
     public class SalesTaxMediator : ISalesTaxMediator
     {
-        public Task<SalesTaxResponse> CalculateSalesTax(SalesTaxRequest request)
+        public Task<IActionResult> CalculateSalesTax(SalesTaxRequest request)
         {
             // More validation. Check if the state is real. But not here. Do in filter.
             // Get configuration into filter.
+            return null;
         }
     }
 }

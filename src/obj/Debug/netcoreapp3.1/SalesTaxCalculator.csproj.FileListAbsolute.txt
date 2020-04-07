@@ -9,7 +9,6 @@ D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator
 D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.csprojAssemblyReference.cache
 D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\staticwebassets\SalesTaxCalculator.StaticWebAssets.Manifest.cache
 D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\staticwebassets\SalesTaxCalculator.StaticWebAssets.xml
-D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.MvcApplicationPartsAssemblyInfo.cache
 D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.AssemblyInfoInputs.cache
 D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.AssemblyInfo.cs
 D:\Data\Projects\jwthrs\SalesTaxCalculator\SalesTaxCalculator\SalesTaxCalculator\src\obj\Debug\netcoreapp3.1\SalesTaxCalculator.RazorTargetAssemblyInfo.cache
