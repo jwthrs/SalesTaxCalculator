@@ -14,12 +14,10 @@ namespace SalesTaxCalculator.Controllers
 
     public class SalesTaxController : ControllerBase
     {
-        private IConfiguration _config;
         private ISalesTaxMediator _mediator;
 
-        public SalesTaxController(IConfiguration config, ISalesTaxMediator mediator)
+        public SalesTaxController(ISalesTaxMediator mediator)
         {
-            _config = config;
             _mediator = mediator;
         }
 
