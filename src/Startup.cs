@@ -14,6 +14,7 @@ using SalesTaxCalculator.Services;
 using SalesTaxCalculator.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace SalesTaxCalculator
 {
@@ -31,7 +32,7 @@ namespace SalesTaxCalculator
         {
             
             services.AddControllers();
-            services.AddSingleton<ISalesTaxMediator, SalesTaxMediator>();
+            services.AddScoped<ISalesTaxMediator, SalesTaxMediator>();
             services.AddDbContext<ISalesTaxContext, SalesTaxContext>(options => 
                 options.UseSqlServer(Configuration["ConnectionStrings:SalesTaxContext"])
             );

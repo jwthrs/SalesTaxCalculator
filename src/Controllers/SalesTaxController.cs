@@ -25,9 +25,16 @@ namespace SalesTaxCalculator.Controllers
 
         [HttpPost("[action]")]
         [TypeFilter(typeof(ModelStateValidationFilter))]
-        public IActionResult Calculate([FromBody]SalesTaxRequest request)
+        public async Task<IActionResult> Calculate([FromBody]SalesTaxRequest request)
         {
-            return new OkObjectResult(_mediator.CalculateSalesTax(request));
+
+            return await _mediator.CalculateSalesTaxAsync(request);
+        }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> Add([FromBody]StateSalesTax model) {
+            await _mediator.AddAsync(model);
+            return new OkResult();
         }
     }
 }

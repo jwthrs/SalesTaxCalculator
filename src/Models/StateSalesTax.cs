@@ -5,13 +5,17 @@ using System.Threading.Tasks;
 
 namespace SalesTaxCalculator.Models
 {
-    public class StateSalesTax : AreaTax
+    public class StateSalesTax 
     {
-        public List<AreaTax> countyTaxes { get; set; }
+        public int Id {get; set;}
+        public string Name {get; set;}
+        public string TaxRate {get; set;}
+        public List<CountyTax> countyTaxes { get; set; }
     }
 
-    public class AreaTax
+    public class CountyTax
     {
+        public int Id {get; set;}
         public string Name { get; set; }
         public string TaxRate { get; set; }
     }
