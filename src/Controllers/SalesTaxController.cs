@@ -16,6 +16,10 @@ namespace SalesTaxCalculator.Controllers
     {
         private ISalesTaxMediator _mediator;
 
+        /// <summary>
+        /// Constructor dependency injects a SalesTaxMediator.
+        /// </summary>
+        /// <param name="mediator"></param>
         public SalesTaxController(ISalesTaxMediator mediator)
         {
             _mediator = mediator;
