@@ -12,10 +12,10 @@ namespace SalesTaxCalculator.Builders
     public static class ErrorBuilder {
 
         /// <summary>
-        /// 
+        /// Wraps an object with a BadRequestObjectResult.
         /// </summary>
-        /// <param name="errorObject"></param>
-        /// <returns></returns>
+        /// <param name="errorObject">Error object to wrap with BadRequestObjectResult.</param>
+        /// <returns>BadRequestError</returns>
         public static IActionResult BadRequestError(object errorObject)
         {
             return new BadRequestObjectResult(new
