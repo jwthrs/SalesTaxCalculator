@@ -6,6 +6,9 @@ using System.ComponentModel.DataAnnotations;
 namespace SalesTaxCalculator.Models
 {
 
+	/// <summary>
+	/// SalesTaxRequest is a model of the expected body given to the "Calculate" endpoint.
+	/// </summary>
 	public class SalesTaxRequest
 	{
 		[Required(ErrorMessage = "State is required.")]

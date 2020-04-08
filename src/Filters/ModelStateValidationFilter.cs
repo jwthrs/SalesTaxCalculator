@@ -7,6 +7,9 @@ using static SalesTaxCalculator.Builders.ErrorBuilder;
 
 namespace SalesTaxCalculator.Filters
 {
+    /// <summary>
+    /// ModelStateValidationFilter will determine if a given model contains the correct fields for that object.
+    /// </summary>
     public class ModelStateValidationFilter : IActionFilter
     {
         public void OnActionExecuted(ActionExecutedContext context)

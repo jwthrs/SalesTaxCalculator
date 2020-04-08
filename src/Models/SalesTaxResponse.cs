@@ -2,6 +2,9 @@ using System;
 
 namespace SalesTaxCalculator.Models
 {
+    /// <summary>
+    /// SalesTaxResponse is a model of what the "Calculate" endpoint will return.
+    /// </summary>
     public class SalesTaxResponse
     {
         public string State { get; set; }
