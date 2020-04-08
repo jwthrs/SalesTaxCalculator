@@ -18,10 +18,13 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace SalesTaxCalculator
 {
+    /// <summary>
+    /// Startup configures the server before it runs.
+    /// </summary>
     public class Startup
     {
         /// <summary>
-        /// Startup configures the server before it runs.
+        /// Sets configuration.
         /// </summary>
         /// <param name="configuration">Configuration object</param>
         public Startup(IConfiguration configuration)
