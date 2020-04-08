@@ -20,6 +20,10 @@ namespace SalesTaxCalculator
 {
     public class Startup
     {
+        /// <summary>
+        /// Startup configures the server before it runs.
+        /// </summary>
+        /// <param name="configuration">Configuration object</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,18 +31,29 @@ namespace SalesTaxCalculator
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Injects the needed controllers and services required to run the API endpoints.
+        /// This method gets called at the runtime. 
+        /// 
+        /// </summary>
+        /// <param name="services">Services to be configured.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             
             services.AddControllers();
             services.AddScoped<ISalesTaxMediator, SalesTaxMediator>();
             services.AddDbContext<ISalesTaxContext, SalesTaxContext>(options => 
+                
+                // ConnectionStrings:SalesTaxContext is a field in the appsettings.json which holds the database connection string.
                 options.UseSqlServer(Configuration["ConnectionStrings:SalesTaxContext"])
             );
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configure HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">Application Builder</param>
+        /// <param name="env">WebHostEnvironment</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

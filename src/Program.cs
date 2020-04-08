@@ -11,6 +11,10 @@ namespace SalesTaxCalculator
 {
     public class Program
     {
+        /// <summary>
+        /// Entry point to the webserver program.
+        /// </summary>
+        /// <param name="args">Arguments to configure server.</param>
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
