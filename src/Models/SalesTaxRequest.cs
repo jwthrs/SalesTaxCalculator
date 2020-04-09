@@ -18,7 +18,8 @@ namespace SalesTaxCalculator.Models
 		public string County { get; set; }
 
 		[Required(ErrorMessage = "ItemPrice is required.")]
-		public string ItemPrice { get; set; }
+		[Range(0.01f, float.MaxValue, ErrorMessage = "Value for {0} should not be less than {1}, and not more than {2}")]
+		public float ItemPrice { get; set; }
 	}
 }
 

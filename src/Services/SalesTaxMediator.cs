@@ -48,23 +48,18 @@ namespace SalesTaxCalculator.Services
                 // Didn't find County
                 return BadRequestError($"{request.County} does not exist in {request.State}");
             }
-            
-            if (!float.TryParse(request.ItemPrice, out float itemPrice))
-            {
-                return BadRequestError($"{request.ItemPrice} couldn't be parsed to a float number value.");
-            }
 
-            if (itemPrice < 0.01)
+            if (request.ItemPrice < 0.01)
             {
-                return BadRequestError($"{itemPrice} should be a dollar figure that is not equal to or below 0.00.");
+                return BadRequestError($"{request.ItemPrice} should be a dollar figure that is not equal to or below 0.00.");
             }
 
             var response = new SalesTaxResponse
             {
                 State = request.State,
                 County = request.County,
-                StateTax = CalculateTax(itemPrice, matchedState.TaxRate),
-                LocalTax = CalculateTax(itemPrice, matchedCounty.TaxRate)
+                StateTax = CalculateTax(request.ItemPrice, matchedState.TaxRate),
+                LocalTax = CalculateTax(request.ItemPrice, matchedCounty.TaxRate)
 
             };
 

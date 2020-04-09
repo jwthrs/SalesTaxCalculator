@@ -34,7 +34,6 @@ namespace SalesTaxCalculator.Context
 			await SaveChangesAsync();
 		}
 
-
 		/// <summary>
 		/// Gets a state from the database given the state name.
 		/// </summary>
