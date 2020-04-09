@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
+using SalesTaxCalculator.Constants;
 
 
 namespace SalesTaxCalculator.Models
@@ -11,14 +12,15 @@ namespace SalesTaxCalculator.Models
 	/// </summary>
 	public class SalesTaxRequest
 	{
-		[Required(ErrorMessage = "State is required.")]
+
+		[Required(ErrorMessage = ErrorMessages.ERR_STATE_REQUIRED)]
 		public string State { get; set; }
 
-		[Required(ErrorMessage = "County is required.")]
+		[Required(ErrorMessage = ErrorMessages.ERR_COUNTY_REQUIRED)]
 		public string County { get; set; }
 
-		[Required(ErrorMessage = "ItemPrice is required.")]
-		[Range(0.01f, float.MaxValue, ErrorMessage = "Value for {0} should not be less than {1}, and not more than {2}")]
+		[Required(ErrorMessage = ErrorMessages.ERR_ITEMPRICE_REQUIRED)]
+		[Range(0.01f, float.MaxValue, ErrorMessage = ErrorMessages.ERR_ITEMPRICE_BOUNDARY)]
 		public float ItemPrice { get; set; }
 	}
 }

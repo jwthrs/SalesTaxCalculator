@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using SalesTaxCalculator.Models;
+using SalesTaxCalculator.Builders;
 
-namespace SalesTaxCalculator.Utility
+namespace SalesTaxCalculator.UnitTests.Utility
 {
     public class Utility
     {

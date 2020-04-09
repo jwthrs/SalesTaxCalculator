@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using SalesTaxCalculator.Models;
-using SalesTaxCalculator.Utility;
+using SalesTaxCalculator.UnitTests.Utility;
 
 namespace SalesTaxCaulcator.UnitTests.ControllerTests
 {
@@ -31,11 +31,17 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		[TestMethod]
 		public async Task TestInvalidRequestState()
 		{
-			var testCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
-			var testStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {testCountyTax});
-			var testRequest = Utility.CreateRequest(testStateTax.Name, testStateTax.CountyTaxes.First().Name, 19.99f);
+			var dummyCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
+			var dummyStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {dummyCountyTax});
+			
+			var dummyBadStateName = "BadState";
+			var testRequest = Utility.CreateRequest(dummyBadStateName, dummyStateTax.CountyTaxes.First().Name, 19.99f);
 
-			_mockContext.Setup(m => m.RetrieveState(testStateTax.Name)).ReturnsAsync(testStateTax);
+			/*
+			// TODO: Create error response.
+			var expectedResponse;
+			*/
+			_mockContext.Setup(m => m.RetrieveState(dummyStateTax.Name)).ReturnsAsync(dummyStateTax);
 			var mediator = new SalesTaxMediator(_mockContext.Object);
 		}
 
