@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.Builders;
 
@@ -50,6 +52,13 @@ namespace SalesTaxCalculator.UnitTests.Utility
                 TotalTax = totalTax
             };
         }
+
+        public static IActionResult CreateErrorResponse(string errMsg)
+        {
+            return ErrorBuilder.BadRequestError(errMsg);
+        }
+        
+        
         
         
     }

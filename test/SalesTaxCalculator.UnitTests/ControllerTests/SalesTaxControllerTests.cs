@@ -10,6 +10,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.UnitTests.Utility;
+using SalesTaxCalculator.Constants;
 
 namespace SalesTaxCaulcator.UnitTests.ControllerTests
 {
@@ -25,24 +26,87 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		}
 
 		/// <summary>
+		/// Test for error message when no state is provided in the request.
+		/// </summary>
+		/// <returns></returns>
+		[TestMethod]
+		public async Task TestInvalidRequestNoState()
+		{
+
+			var expectedError = Utility.CreateErrorResponse(ErrorMessages.ErrStateRequired);
+			
+			
+
+		}
+
+		/// <summary>
+		/// Test for error message when no county is provided in the request.
+		/// </summary>
+		/// <returns></returns>
+		[TestMethod]
+		public async Task TestInvalidRequestNoCounty()
+		{
+			
+		}
+
+		/// <summary>
+		/// Test for error message when no item price is provided in the request.
+		/// </summary>
+		/// <returns></returns>
+		[TestMethod]
+		public async Task TestInvalidRequestNoItemPrice()
+		{
+			
+		}
+
+		/// <summary>
+		/// Test for error message when no state or county is provided in the request.
+		/// </summary>
+		/// <returns></returns>
+		[TestMethod]
+		public async Task TestInvalidRequestNoStateNoCounty()
+		{
+			
+		}
+		
+		/// <summary>
+		/// Test for error message when no state or item price is provided in the request.
+		/// </summary>
+		/// <returns></returns>
+		[TestMethod]
+		public async Task TestInvalidRequestNoStateNoItemPrice()
+		{
+			
+		}
+
+		/// <summary>
+		/// Test for error message when no county or item price is provided in the request.
+		/// </summary>
+		/// <returns></returns>
+		[TestMethod]
+		public async Task TestInvalidRequestNoCountyNoItemPrice()
+		{
+			
+		}
+
+		/// <summary>
+		/// Test for error message when no state, county or item price is provided in the request.
+		/// </summary>
+		/// <returns></returns>
+		[TestMethod]
+		public async Task TestInvalidRequestNoStateNoCountyNoItemPrice()
+		{
+			
+		}
+		
+		/// <summary>
 		/// Test to get invalid state error when all request data is valid except for state.
 		/// </summary>
 		/// <returns></returns>
 		[TestMethod]
-		public async Task TestInvalidRequestState()
+		public async Task TestInvalidRequestBadState()
 		{
-			var dummyCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
-			var dummyStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {dummyCountyTax});
-			
-			var dummyBadStateName = "BadState";
-			var testRequest = Utility.CreateRequest(dummyBadStateName, dummyStateTax.CountyTaxes.First().Name, 19.99f);
 
-			/*
-			// TODO: Create error response.
-			var expectedResponse;
-			*/
-			_mockContext.Setup(m => m.RetrieveState(dummyStateTax.Name)).ReturnsAsync(dummyStateTax);
-			var mediator = new SalesTaxMediator(_mockContext.Object);
 		}
 
 		/// <summary>
@@ -50,14 +114,9 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		/// </summary>
 		/// <returns></returns>
 		[TestMethod]
-		public async Task TestInvalidRequestCounty()
+		public async Task TestInvalidRequestBadCounty()
 		{
-			var testCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
-			var testStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {testCountyTax});
-			var testRequest = Utility.CreateRequest(testStateTax.Name, testStateTax.CountyTaxes.First().Name, 19.99f);
 
-			_mockContext.Setup(m => m.RetrieveState(testStateTax.Name)).ReturnsAsync(testStateTax);
-			var mediator = new SalesTaxMediator(_mockContext.Object);
 		}
 
 		/// <summary>
@@ -67,12 +126,7 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		[TestMethod]
 		public async Task TestInvalidRequestItemPriceBelow()
 		{
-			var testCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
-			var testStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {testCountyTax});
-			var testRequest = Utility.CreateRequest(testStateTax.Name, testStateTax.CountyTaxes.First().Name, 19.99f);
 
-			_mockContext.Setup(m => m.RetrieveState(testStateTax.Name)).ReturnsAsync(testStateTax);
-			var mediator = new SalesTaxMediator(_mockContext.Object);
 		}
 
 		/// <summary>
@@ -80,14 +134,9 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		/// </summary>
 		/// <returns></returns>
 		[TestMethod]
-		public async Task TestInvalidRequestItemPrice()
+		public async Task TestInvalidRequestBadItemPrice()
 		{
-			var testCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
-			var testStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {testCountyTax});
-			var testRequest = Utility.CreateRequest(testStateTax.Name, testStateTax.CountyTaxes.First().Name, 19.99f);
 
-			_mockContext.Setup(m => m.RetrieveState(testStateTax.Name)).ReturnsAsync(testStateTax);
-			var mediator = new SalesTaxMediator(_mockContext.Object);
 		}
 
 		/// <summary>
@@ -97,12 +146,7 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		[TestMethod]
 		public async Task TestInvalidRequest()
 		{
-			var testCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
-			var testStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {testCountyTax});
-			var testRequest = Utility.CreateRequest(testStateTax.Name, testStateTax.CountyTaxes.First().Name, 19.99f);
 
-			_mockContext.Setup(m => m.RetrieveState(testStateTax.Name)).ReturnsAsync(testStateTax);
-			var mediator = new SalesTaxMediator(_mockContext.Object);
 		}
 
 		/// <summary>
