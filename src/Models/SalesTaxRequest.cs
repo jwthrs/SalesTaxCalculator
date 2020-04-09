@@ -13,14 +13,14 @@ namespace SalesTaxCalculator.Models
 	public class SalesTaxRequest
 	{
 
-		[Required(ErrorMessage = ErrorMessages.ERR_STATE_REQUIRED)]
+		[Required(ErrorMessage = ErrorMessages.ErrStateRequired)]
 		public string State { get; set; }
 
-		[Required(ErrorMessage = ErrorMessages.ERR_COUNTY_REQUIRED)]
+		[Required(ErrorMessage = ErrorMessages.ErrCountyRequired)]
 		public string County { get; set; }
 
-		[Required(ErrorMessage = ErrorMessages.ERR_ITEMPRICE_REQUIRED)]
-		[Range(0.01f, float.MaxValue, ErrorMessage = ErrorMessages.ERR_ITEMPRICE_BOUNDARY)]
+		[Required(ErrorMessage = ErrorMessages.ErrItempriceRequired)]
+		[Range(0.01f, float.MaxValue, ErrorMessage = ErrorMessages.ErrItempriceBoundary)]
 		public float ItemPrice { get; set; }
 	}
 }
