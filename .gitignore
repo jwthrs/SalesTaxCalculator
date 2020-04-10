@@ -1,6 +1,5 @@
 **/Properties
 *.json
-*.csproj
 *.csproj.user
 **/bin
 **/obj
