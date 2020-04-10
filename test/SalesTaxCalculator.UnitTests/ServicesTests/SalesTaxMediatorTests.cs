@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using SalesTaxCalculator.Context;
@@ -10,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.Constants;
 
-namespace SalesTaxCaulcator.UnitTests.ControllerTests
+namespace SalesTaxCalculator.UnitTests.ServicesTests
 {
 	[TestClass]
 	public class SalesTaxControllerTests
