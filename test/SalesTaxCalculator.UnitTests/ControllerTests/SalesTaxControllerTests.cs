@@ -9,11 +9,8 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestPlatform.CoreUtilities;
-using SalesTaxCalculator.Builders;
 using SalesTaxCalculator.Models;
-using SalesTaxCalculator.UnitTests.Utility;
 using SalesTaxCalculator.Constants;
-using SalesTaxCalculator.Utility;
 
 namespace SalesTaxCaulcator.UnitTests.ControllerTests
 {
@@ -35,7 +32,39 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		[TestMethod]
 		public async Task TestInvalidRequestBadState()
 		{
+			var testRequest = new SalesTaxRequest
+			{
+				State = "BadState",
+				County = "NoCounty",
+				ItemPrice = 19.99f
+			};
+			
+			// Setup mock db context
+			_mockContext.Setup(m => m.RetrieveState("NoState")).ReturnsAsync(
+				new StateSalesTax
+				{
+					Id = 1,
+					Name = "NoState",
+					TaxRate = "1.0",
+					CountyTaxes = new List<CountyTax>
+					{
+						new CountyTax
+						{
+							Id = 1,
+							Name = "NoCounty",
+							TaxRate = "1.0"
+						}
+					}
+				});
 
+			var mediator = new SalesTaxMediator(_mockContext.Object);
+			// Test mediator
+			var result = (await mediator.CalculateSalesTaxAsync(testRequest) as BadRequestObjectResult)?.Value as ResponseError;
+			
+			// Assert if result is same as expected 
+			Assert.AreEqual(String.Format(ErrorMessages.ErrNotSupported, testRequest.State), result?.Error as string);
+			
+			_mockContext.Verify(m => m.RetrieveState(testRequest.State), Times.Once);
 		}
 
 		/// <summary>
@@ -77,6 +106,8 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 			
 			// Assert if result is same as expected 
 			Assert.AreEqual(String.Format(ErrorMessages.ErrCountyNotExistInState, "BadCounty","NoState"), result?.Error as string);
+			
+			_mockContext.Verify(m => m.RetrieveState(testRequest.State), Times.Once);
 		}
 
 		/// <summary>
@@ -132,6 +163,8 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 			Assert.AreEqual(expectedResponse.LocalTax, result?.LocalTax);
 			Assert.AreEqual(expectedResponse.StateTax, result?.StateTax);
 			Assert.AreEqual(expectedResponse.TotalTax, result?.TotalTax);
+			
+			_mockContext.Verify(m => m.RetrieveState(testRequest.State), Times.Once);
 		}
 	}
 }
