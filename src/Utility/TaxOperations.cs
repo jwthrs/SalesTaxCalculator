@@ -2,6 +2,9 @@
 
 namespace SalesTaxCalculator.Utility
 {
+    /// <summary>
+    /// TaxOperations contains functions that perform mathematical operations.
+    /// </summary>
     public static class TaxOperations
     {
 

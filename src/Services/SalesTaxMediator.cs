@@ -63,8 +63,8 @@ namespace SalesTaxCalculator.Services
             {
                 State = request.State,
                 County = request.County,
-                StateTax = TaxOperations.CalculateSalesTax(request.ItemPrice, float.Parse(matchedState.TaxRate)),
-                LocalTax = TaxOperations.CalculateSalesTax(request.ItemPrice, float.Parse(matchedCounty.TaxRate))
+                StateTax = CalculateSalesTax(request.ItemPrice, float.Parse(matchedState.TaxRate)),
+                LocalTax = CalculateSalesTax(request.ItemPrice, float.Parse(matchedCounty.TaxRate))
             };
 
             response.TotalTax = response.StateTax + response.LocalTax;

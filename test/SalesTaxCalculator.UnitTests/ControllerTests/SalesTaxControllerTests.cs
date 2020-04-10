@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.UnitTests.Utility;
 using SalesTaxCalculator.Constants;
+using SalesTaxCalculator.Utility;
 
 namespace SalesTaxCaulcator.UnitTests.ControllerTests
 {
@@ -157,9 +158,14 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 			var dummyStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {dummyCountyTax});
 			var testRequest = Utility.CreateRequest(dummyStateTax.Name, dummyStateTax.CountyTaxes.First().Name, 19.99f);
 			
-			// TODO: Need to create a utility function in mediator
+			var expectedStateTax =
+				TaxOperations.CalculateSalesTax(testRequest.ItemPrice, float.Parse(dummyStateTax.TaxRate));
+			var expectedLocalTax =
+				TaxOperations.CalculateSalesTax(testRequest.ItemPrice, float.Parse(dummyCountyTax.TaxRate));
+			var expectedTotalTax = expectedStateTax + expectedLocalTax;
+			
 			var expectedResponse =
-				Utility.CreateResponse(dummyStateTax.Name, dummyStateTax.CountyTaxes.First().Name, 0, 0, 0);
+				Utility.CreateResponse(dummyStateTax.Name, dummyStateTax.CountyTaxes.First().Name, expectedStateTax, expectedLocalTax, expectedTotalTax);
 			
 			// Setup mock context
 			_mockContext.Setup(m => m.RetrieveState(dummyStateTax.Name)).ReturnsAsync(dummyStateTax);
