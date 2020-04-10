@@ -53,13 +53,6 @@ namespace SalesTaxCalculator.Services
                 return BadRequestError(String.Format(ErrorMessages.ErrCountyNotExistInState, request.County, request.State));
             }
 
-            // Redundant
-            if (request.ItemPrice < 0.01)
-            {
-                return BadRequestError(
-                    String.Format(ErrorMessages.ErrItempriceBoundary, "item price", 0.01, float.MaxValue));
-            }
-
             var response = new SalesTaxResponse
             {
                 State = request.State,
