@@ -6,7 +6,7 @@ using SalesTaxCalculator.Builders;
 
 namespace SalesTaxCalculator.UnitTests.Utility
 {
-    public class Utility
+    public static class Utility
     {
         public static StateSalesTax CreateStateSalesTax(int stateId, string stateName, string stateTaxRate,
             List<CountyTax> countyTaxes)
