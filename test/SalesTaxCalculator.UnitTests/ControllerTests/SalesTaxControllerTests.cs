@@ -8,6 +8,8 @@ using SalesTaxCalculator.Services;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.TestPlatform.CoreUtilities;
+using SalesTaxCalculator.Builders;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.UnitTests.Utility;
 using SalesTaxCalculator.Constants;
@@ -96,23 +98,13 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		{
 			
 		}
-		
+
 		/// <summary>
 		/// Test to get invalid state error when all request data is valid except for state.
 		/// </summary>
 		/// <returns></returns>
 		[TestMethod]
 		public async Task TestInvalidRequestBadState()
-		{
-
-		}
-
-		/// <summary>
-		/// Test to get invalid county error when all request data is valid except for county.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestBadCounty()
 		{
 
 		}
@@ -132,9 +124,40 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		/// </summary>
 		/// <returns></returns>
 		[TestMethod]
-		public async Task TestInvalidRequestBadItemPrice()
+		public async Task TestInvalidRequestBadCounty()
 		{
+			var testRequest = new SalesTaxRequest
+			{
+				State = "NoState",
+				County = "BadCounty",
+				ItemPrice = 19.99f
+			};
+			
+			// Setup mock db context
+			_mockContext.Setup(m => m.RetrieveState(testRequest.State)).ReturnsAsync(
+				new StateSalesTax
+				{
+					Id = 1,
+					Name = testRequest.State,
+					TaxRate = "1.0",
+					CountyTaxes = new List<CountyTax>
+					{
+						new CountyTax
+						{
+							Id = 1,
+							Name = "NoCounty",
+							TaxRate = "1.0"
+						}
+					}
+				});
 
+			var mediator = new SalesTaxMediator(_mockContext.Object);
+			
+			// Test mediator
+			var result = (await mediator.CalculateSalesTaxAsync(testRequest) as BadRequestObjectResult)?.Value as ResponseError;
+			
+			// Assert if result is same as expected 
+			Assert.AreEqual(String.Format(ErrorMessages.ErrCountyNotExistInState, "BadCounty","NoState"), result?.Error as string);
 		}
 
 		/// <summary>
@@ -144,7 +167,7 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		[TestMethod]
 		public async Task TestInvalidRequest()
 		{
-
+			
 		}
 
 		/// <summary>
@@ -171,7 +194,7 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 				TotalTax = 0.4f
 			};
 			
-			// Setup mock context
+			// Setup mock db context
 			_mockContext.Setup(m => m.RetrieveState(testRequest.State)).ReturnsAsync(
 				new StateSalesTax
 				{
@@ -200,9 +223,6 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 			Assert.AreEqual(expectedResponse.LocalTax, result?.LocalTax);
 			Assert.AreEqual(expectedResponse.StateTax, result?.StateTax);
 			Assert.AreEqual(expectedResponse.TotalTax, result?.TotalTax);
-			
-			// Throw exception if never called
-			_mockContext.Verify(m => m.RetrieveState(testRequest.State), Times.Once());
 		}
 	}
 }

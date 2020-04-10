@@ -19,7 +19,6 @@ namespace SalesTaxCalculator.Utility
         {
             return (float) Math.Round(itemPrice * (taxRate / 100), 2);
         }
-        
-        
+
     }
 }

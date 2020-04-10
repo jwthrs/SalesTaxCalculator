@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using SalesTaxCalculator.Models;
 
 namespace SalesTaxCalculator.Builders
 {
@@ -18,7 +15,7 @@ namespace SalesTaxCalculator.Builders
         /// <returns>BadRequestError</returns>
         public static IActionResult BadRequestError(object errorObject)
         {
-            return new BadRequestObjectResult(new
+            return new BadRequestObjectResult(new ResponseError
             {
                 Error = errorObject
             });
