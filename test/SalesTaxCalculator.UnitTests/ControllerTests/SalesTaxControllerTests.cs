@@ -29,92 +29,11 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		}
 
 		/// <summary>
-		/// Test for error message when no state is provided in the request.
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestNoState()
-		{
-			
-		}
-
-		/// <summary>
-		/// Test for error message when no county is provided in the request.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestNoCounty()
-		{
-			
-		}
-
-		/// <summary>
-		/// Test for error message when no item price is provided in the request.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestNoItemPrice()
-		{
-			
-		}
-
-		/// <summary>
-		/// Test for error message when no state or county is provided in the request.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestNoStateNoCounty()
-		{
-			
-		}
-		
-		/// <summary>
-		/// Test for error message when no state or item price is provided in the request.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestNoStateNoItemPrice()
-		{
-			
-		}
-
-		/// <summary>
-		/// Test for error message when no county or item price is provided in the request.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestNoCountyNoItemPrice()
-		{
-			
-		}
-
-		/// <summary>
-		/// Test for error message when no state, county or item price is provided in the request.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestNoStateNoCountyNoItemPrice()
-		{
-			
-		}
-
-		/// <summary>
 		/// Test to get invalid state error when all request data is valid except for state.
 		/// </summary>
 		/// <returns></returns>
 		[TestMethod]
 		public async Task TestInvalidRequestBadState()
-		{
-
-		}
-
-		/// <summary>
-		/// Boundary test to get invalid item price error when all request data is valid except for item price.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequestItemPriceBelow()
 		{
 
 		}
