@@ -80,16 +80,6 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		}
 
 		/// <summary>
-		/// Test to get all invalid field errors when all request data is invalid for state, county, and item price.
-		/// </summary>
-		/// <returns></returns>
-		[TestMethod]
-		public async Task TestInvalidRequest()
-		{
-			
-		}
-
-		/// <summary>
 		/// Test for valid response given valid data.
 		/// </summary>
 		/// <returns></returns>
