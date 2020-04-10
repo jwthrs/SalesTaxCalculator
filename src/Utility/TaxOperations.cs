@@ -17,7 +17,9 @@ namespace SalesTaxCalculator.Utility
         /// <returns>A product of itemPrice and taxRate rounded to two decimal places.</returns>
         public static float CalculateSalesTax(float itemPrice, float taxRate)
         {
-            return (float) Math.Round((double) itemPrice * (taxRate / 100));
+            return (float) Math.Round(itemPrice * (taxRate / 100), 2);
         }
+        
+        
     }
 }

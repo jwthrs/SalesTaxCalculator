@@ -19,15 +19,16 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 	public class SalesTaxControllerTests
 	{
 
-		private Mock<SalesTaxContext> _mockContext;
+		private Mock<ISalesTaxContext> _mockContext;
 		
 		public SalesTaxControllerTests()
 		{
-			_mockContext = new Mock<SalesTaxContext>();
+			_mockContext = new Mock<ISalesTaxContext>();
 		}
 
 		/// <summary>
 		/// Test for error message when no state is provided in the request.
+		/// 
 		/// </summary>
 		/// <returns></returns>
 		[TestMethod]
@@ -153,32 +154,55 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		[TestMethod] 
 		public async Task TestValidRequest()
 		{
-			// Set up testing parameters
-			var dummyCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
-			var dummyStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {dummyCountyTax});
-			var testRequest = Utility.CreateRequest(dummyStateTax.Name, dummyStateTax.CountyTaxes.First().Name, 19.99f);
-			
-			var expectedStateTax =
-				TaxOperations.CalculateSalesTax(testRequest.ItemPrice, float.Parse(dummyStateTax.TaxRate));
-			var expectedLocalTax =
-				TaxOperations.CalculateSalesTax(testRequest.ItemPrice, float.Parse(dummyCountyTax.TaxRate));
-			var expectedTotalTax = expectedStateTax + expectedLocalTax;
-			
-			var expectedResponse =
-				Utility.CreateResponse(dummyStateTax.Name, dummyStateTax.CountyTaxes.First().Name, expectedStateTax, expectedLocalTax, expectedTotalTax);
+
+			var testRequest = new SalesTaxRequest
+			{
+				State = "NoState",
+				County = "NoCounty",
+				ItemPrice = 19.99f
+			};
+
+			var expectedResponse = new SalesTaxResponse
+			{
+				State = testRequest.State,
+				County = testRequest.County,
+				StateTax = 0.2f,
+				LocalTax = 0.2f,
+				TotalTax = 0.4f
+			};
 			
 			// Setup mock context
-			_mockContext.Setup(m => m.RetrieveState(dummyStateTax.Name)).ReturnsAsync(dummyStateTax);
+			_mockContext.Setup(m => m.RetrieveState(testRequest.State)).ReturnsAsync(
+				new StateSalesTax
+				{
+					Id = 1,
+					Name = testRequest.State,
+					TaxRate = "1.0",
+					CountyTaxes = new List<CountyTax>
+					{
+						new CountyTax
+						{
+							Id = 1,
+							Name = "NoCounty",
+							TaxRate = "1.0"
+						}
+					}
+				});
+
 			var mediator = new SalesTaxMediator(_mockContext.Object);
 			
 			// Test mediator
-			var result = await mediator.CalculateSalesTaxAsync(testRequest);
+			var result = (await mediator.CalculateSalesTaxAsync(testRequest) as OkObjectResult)?.Value as SalesTaxResponse;
 			
-			// Assert if result is same as expected response
-			(result as ViewResult)?.Model.Should().BeEquivalentTo(expectedResponse);
+			// Assert if result is same as expected 
+			Assert.AreEqual(expectedResponse.State, result?.State);
+			Assert.AreEqual(expectedResponse.County, result?.County);
+			Assert.AreEqual(expectedResponse.LocalTax, result?.LocalTax);
+			Assert.AreEqual(expectedResponse.StateTax, result?.StateTax);
+			Assert.AreEqual(expectedResponse.TotalTax, result?.TotalTax);
 			
 			// Throw exception if never called
-			_mockContext.Verify(m => m.RetrieveState(dummyStateTax.Name), Times.Once());
+			_mockContext.Verify(m => m.RetrieveState(testRequest.State), Times.Once());
 		}
 	}
 }
