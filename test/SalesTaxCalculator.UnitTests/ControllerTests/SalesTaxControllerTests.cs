@@ -6,9 +6,7 @@ using Moq;
 using SalesTaxCalculator.Context;
 using SalesTaxCalculator.Services;
 using System.Threading.Tasks;
-using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestPlatform.CoreUtilities;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.Constants;
 
