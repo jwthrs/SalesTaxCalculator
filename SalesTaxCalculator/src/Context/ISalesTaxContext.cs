@@ -14,7 +14,7 @@ namespace SalesTaxCalculator.Context
         /// </summary>
         /// <param name="model">The StateSalesTax model containing state and county information.</param>
         /// <returns>Task </returns>
-        Task AddState(StateSalesTax state);
+        Task<StateSalesTax> AddState(StateSalesTax state);
 
         /// <summary>
         /// Gets a state from the database given the state name.

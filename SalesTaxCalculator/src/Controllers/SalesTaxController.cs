@@ -43,10 +43,10 @@ namespace SalesTaxCalculator.Controllers
         /// </summary>
         /// <param name="model">StateSalesTax model that contains information to add to the database.</param>
         /// <returns></returns>
-        [HttpPost("add")]
-        public async Task<IActionResult> Add([FromBody]StateSalesTax model) {
-            await _mediator.AddAsync(model);
-            return new OkResult();
+        [HttpPost("[action]")]
+        [TypeFilter(typeof(ModelStateValidationFilter))]
+        public async Task<IActionResult> AddState([FromBody]StateSalesTax model) {
+            return new OkObjectResult(await _mediator.AddAsync(model));
         }
     }
 }

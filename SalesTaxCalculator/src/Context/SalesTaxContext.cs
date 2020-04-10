@@ -27,9 +27,12 @@ namespace SalesTaxCalculator.Context
 		/// </summary>
 		/// <param name="model">The StateSalesTax model containing state and county information.</param>
 		/// <returns>Task </returns>
-		public async Task AddState(StateSalesTax model) {
-			await stateSalesTaxes.AddAsync(model);
+		public async Task<StateSalesTax> AddState(StateSalesTax model)
+		{
+			var dbObject = await stateSalesTaxes.AddAsync(model);
 			await SaveChangesAsync();
+
+			return dbObject.Entity;
 		}
 
 		/// <summary>

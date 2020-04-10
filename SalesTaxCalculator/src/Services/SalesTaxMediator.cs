@@ -70,9 +70,8 @@ namespace SalesTaxCalculator.Services
         /// </summary>
         /// <param name="model">StateSalesTax model to add to the database.</param>
         /// <returns></returns>
-        public async Task AddAsync(StateSalesTax model) {
-            // TODO: Best if model is verified before it's added.
-            await _context.AddState(model);
+        public async Task<StateSalesTax> AddAsync(StateSalesTax model) {
+             return await _context.AddState(model);
         }
 
     }

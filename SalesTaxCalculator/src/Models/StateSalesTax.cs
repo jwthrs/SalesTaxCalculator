@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using SalesTaxCalculator.Constants;
 
 namespace SalesTaxCalculator.Models
 {
@@ -9,7 +11,9 @@ namespace SalesTaxCalculator.Models
     public class StateSalesTax 
     {
         public int Id {get; set;}
+        [Required(ErrorMessage = ErrorMessages.ErrStateRequired)]
         public string Name {get; set;}
+        [Required(ErrorMessage = ErrorMessages.ErrTaxRateRequired)]
         public string TaxRate {get; set;}
         public List<CountyTax> CountyTaxes { get; set; }
     }
@@ -21,7 +25,9 @@ namespace SalesTaxCalculator.Models
     public class CountyTax
     {
         public int Id {get; set;}
+        [Required(ErrorMessage = ErrorMessages.ErrCountyRequired)]
         public string Name { get; set; }
+        [Required(ErrorMessage = ErrorMessages.ErrTaxRateRequired)]
         public string TaxRate { get; set; }
     }
 }

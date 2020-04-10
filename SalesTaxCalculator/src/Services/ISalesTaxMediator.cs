@@ -7,6 +7,6 @@ namespace SalesTaxCalculator.Services
     public interface ISalesTaxMediator
     {
         Task<IActionResult> CalculateSalesTaxAsync(SalesTaxRequest request);
-        Task AddAsync(StateSalesTax model);
+        Task<StateSalesTax> AddAsync(StateSalesTax model);
     }
 }
