@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SalesTaxCalculator.Constants;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.Context;
 using SalesTaxCalculator.Utility;
@@ -42,21 +43,21 @@ namespace SalesTaxCalculator.Services
             if (matchedState == null)
             {
                 // Didn't find State
-                return BadRequestError($"{request.State} is not supported.");
+                return BadRequestError(String.Format(ErrorMessages.ErrNotSupported, request.State));
             }
 
             var matchedCounty = matchedState.CountyTaxes?.FirstOrDefault(county => county.Name == request.County);
             if (matchedCounty == null)
             {
                 // Didn't find County
-                return BadRequestError($"{request.County} does not exist in {request.State}");
+                return BadRequestError(String.Format(ErrorMessages.ErrCountyNotExistInState, request.County, request.State));
             }
 
             // Redundant
             if (request.ItemPrice < 0.01)
             {
                 return BadRequestError(
-                    $"{request.ItemPrice} should be a dollar figure that is not equal to or below 0.00.");
+                    String.Format(ErrorMessages.ErrItempriceBoundary, "item price", 0.01, float.MaxValue));
             }
 
             var response = new SalesTaxResponse
