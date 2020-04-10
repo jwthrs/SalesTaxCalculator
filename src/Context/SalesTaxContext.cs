@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SalesTaxCalculator.Models;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SalesTaxCalculator.Context

@@ -1,8 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System;
 using static SalesTaxCalculator.Builders.ErrorBuilder;
 
 namespace SalesTaxCalculator.Filters
