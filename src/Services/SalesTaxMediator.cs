@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using SalesTaxCalculator.Models;
 using SalesTaxCalculator.Context;
+using SalesTaxCalculator.Utility;
 using static SalesTaxCalculator.Builders.ErrorBuilder;
+using static SalesTaxCalculator.Utility.TaxOperations;
 
 namespace SalesTaxCalculator.Services
 {
@@ -37,7 +39,8 @@ namespace SalesTaxCalculator.Services
         {
             var matchedState = await _context.RetrieveState(request.State);
 
-            if (matchedState == null) {
+            if (matchedState == null)
+            {
                 // Didn't find State
                 return BadRequestError($"{request.State} is not supported.");
             }
@@ -49,35 +52,24 @@ namespace SalesTaxCalculator.Services
                 return BadRequestError($"{request.County} does not exist in {request.State}");
             }
 
+            // Redundant
             if (request.ItemPrice < 0.01)
             {
-                return BadRequestError($"{request.ItemPrice} should be a dollar figure that is not equal to or below 0.00.");
+                return BadRequestError(
+                    $"{request.ItemPrice} should be a dollar figure that is not equal to or below 0.00.");
             }
 
             var response = new SalesTaxResponse
             {
                 State = request.State,
                 County = request.County,
-                StateTax = CalculateTax(request.ItemPrice, matchedState.TaxRate),
-                LocalTax = CalculateTax(request.ItemPrice, matchedCounty.TaxRate)
-
+                StateTax = TaxOperations.CalculateSalesTax(request.ItemPrice, float.Parse(matchedState.TaxRate)),
+                LocalTax = TaxOperations.CalculateSalesTax(request.ItemPrice, float.Parse(matchedCounty.TaxRate))
             };
 
             response.TotalTax = response.StateTax + response.LocalTax;
 
             return new OkObjectResult(response);
-        }
-
-        /// <summary>
-        /// Calculates the sales tax given the item price and the tax rate.
-        /// 
-        /// </summary>
-        /// <param name="itemPrice">Price of the item.</param>
-        /// <param name="taxRate">Sales tax rate.</param>
-        /// <returns>A product of itemPrice and taxRate rounded to two decimal places.</returns>
-        private float CalculateTax(float itemPrice, string taxRate)
-        {
-            return (float)Math.Round((double)itemPrice * (float.Parse(taxRate)/100), 2);
         }
 
         /// <summary>

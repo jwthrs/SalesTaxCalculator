@@ -32,11 +32,7 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 		[TestMethod]
 		public async Task TestInvalidRequestNoState()
 		{
-
-			var expectedError = Utility.CreateErrorResponse(ErrorMessages.ErrStateRequired);
 			
-			
-
 		}
 
 		/// <summary>
@@ -160,6 +156,8 @@ namespace SalesTaxCaulcator.UnitTests.ControllerTests
 			var dummyCountyTax = Utility.CreateCountyTax(1, "NoCounty", "0.01");
 			var dummyStateTax = Utility.CreateStateSalesTax(1, "NoState", "0.01", new List<CountyTax> {dummyCountyTax});
 			var testRequest = Utility.CreateRequest(dummyStateTax.Name, dummyStateTax.CountyTaxes.First().Name, 19.99f);
+			
+			// TODO: Need to create a utility function in mediator
 			var expectedResponse =
 				Utility.CreateResponse(dummyStateTax.Name, dummyStateTax.CountyTaxes.First().Name, 0, 0, 0);
 			
